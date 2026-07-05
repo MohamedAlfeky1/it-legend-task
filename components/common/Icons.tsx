@@ -16,17 +16,17 @@ import { FaCaretDown } from "react-icons/fa";
 
 /* ── SVG Icon components (using react-icons) ─────────────────── */
 
-export const ClockIcon = () => (
-  <FiClock className="w-4 h-4 text-emerald-500 shrink-0" />
+export const ClockIcon = ({ className = "text-gray-400" }: { className?: string }) => (
+  <FiClock className={`w-4 h-4 shrink-0 ${className}`} />
 );
-export const BookIcon = () => (
-  <FiBookOpen className="w-4 h-4 text-emerald-500 shrink-0" />
+export const BookIcon = ({ className = "text-gray-400" }: { className?: string }) => (
+  <FiBookOpen className={`w-4 h-4 shrink-0 ${className}`} />
 );
-export const UsersIcon = () => (
-  <FiUsers className="w-4 h-4 text-emerald-500 shrink-0" />
+export const UsersIcon = ({ className = "text-gray-400" }: { className?: string }) => (
+  <FiUsers className={`w-4 h-4 shrink-0 ${className}`} />
 );
-export const GlobeIcon = () => (
-  <FiGlobe className="w-4 h-4 text-emerald-500 shrink-0" />
+export const GlobeIcon = ({ className = "text-gray-400" }: { className?: string }) => (
+  <FiGlobe className={`w-4 h-4 shrink-0 ${className}`} />
 );
 export const PlayIcon = () => (
   <FiPlay className="w-6 h-6 text-white ml-0.5 fill-current" />

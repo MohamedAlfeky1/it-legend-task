@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { FiArrowLeft, FiClock } from "react-icons/fi";
+import { FiArrowLeft, FiClock, FiCheck, FiArrowRight } from "react-icons/fi";
 
 /* ── Mock exam data ──────────────────────────────────────────── */
 
@@ -37,6 +37,8 @@ const EXAM_QUESTIONS = [
     options: [".", ":", ";", "!"],
   },
 ];
+
+const OPTION_LETTERS = ["A", "B", "C", "D"];
 
 /* ── Component ───────────────────────────────────────────────── */
 
@@ -89,7 +91,7 @@ export function ExamModal({
   const minutes = Math.floor(timeLeft / 60)
     .toString()
     .padStart(2, "0");
-  const seconds = (timeLeft % 60).toString().padStart(2, "0");
+    const seconds = (timeLeft % 60).toString().padStart(2, "0");
 
   const handleSelectAnswer = (optionIndex: number) => {
     setSelectedAnswers((prev) => ({
@@ -98,31 +100,37 @@ export function ExamModal({
     }));
   };
 
+  const answeredCount = Object.keys(selectedAnswers).length;
+
   return (
-    <div className="fixed inset-0 z-50 flex flex-col bg-gradient-to-br from-indigo-500 via-blue-500 to-blue-600">
+    <div className="fixed inset-0 z-50 flex flex-col bg-gradient-to-br from-indigo-600 via-blue-600 to-blue-700 overflow-y-auto">
       {/* ── Top bar ──────────────────────────────────────────── */}
-      <div className="flex items-center justify-between px-4 pt-5 pb-3">
+      <div className="w-full max-w-5xl mx-auto flex items-center justify-between px-4 md:px-8 pt-5 md:pt-8 pb-3">
         <button
           onClick={onClose}
-          className="w-10 h-10 rounded-full flex items-center justify-center text-white hover:bg-white/10 transition-colors cursor-pointer"
+          className="w-10 h-10 md:w-12 md:h-12 rounded-full flex items-center justify-center bg-white/10 text-white hover:bg-white/20 transition-all cursor-pointer shadow-sm"
         >
           <FiArrowLeft className="w-6 h-6" />
         </button>
 
         {/* Timer pill */}
-        <div className="flex items-center gap-2 bg-yellow-400 text-gray-900 px-4 py-1.5 rounded-full font-bold text-sm shadow-md">
-          <FiClock className="w-4 h-4" />
-          <span>
+        <div className="flex items-center gap-2.5 bg-yellow-400 text-gray-900 px-5 md:px-6 py-2 rounded-full font-extrabold text-sm md:text-base shadow-lg shadow-yellow-500/20 animate-pulse-subtle">
+          <FiClock className="w-4 h-4 md:w-5 md:h-5 text-gray-900" />
+          <span className="tabular-nums">
             {minutes}:{seconds}
           </span>
         </div>
 
-        {/* Spacer for centering timer */}
-        <div className="w-10" />
+        {/* Progress Counter badge */}
+        <div className="hidden sm:flex items-center gap-1.5 bg-white/10 text-white px-4 py-2 rounded-full text-xs md:text-sm font-bold border border-white/20">
+          <span>{answeredCount}/{EXAM_QUESTIONS.length}</span>
+          <span className="text-white/70">Answered</span>
+        </div>
+        <div className="sm:hidden w-10" />
       </div>
 
       {/* ── Question navigation circles ──────────────────────── */}
-      <div className="flex items-center justify-center gap-3 py-4">
+      <div className="w-full max-w-5xl mx-auto flex items-center justify-center gap-3 md:gap-4 py-4 md:py-6 px-4">
         {EXAM_QUESTIONS.map((_, idx) => {
           const isActive = idx === currentQuestion;
           const isAnswered = idx in selectedAnswers;
@@ -130,12 +138,12 @@ export function ExamModal({
             <button
               key={idx}
               onClick={() => setCurrentQuestion(idx)}
-              className={`w-10 h-10 rounded-full flex items-center justify-center text-sm font-bold border-2 transition-all cursor-pointer ${
+              className={`w-10 h-10 md:w-12 md:h-12 rounded-full flex items-center justify-center text-sm md:text-base font-bold border-2 transition-all cursor-pointer ${
                 isActive
-                  ? "bg-white text-blue-600 border-white shadow-lg scale-110"
+                  ? "bg-white text-blue-600 border-white shadow-xl scale-110 ring-4 ring-white/30"
                   : isAnswered
-                    ? "bg-blue-400/50 text-white border-blue-300"
-                    : "bg-transparent text-white/70 border-white/40 hover:border-white/70"
+                    ? "bg-blue-400/60 text-white border-blue-300 shadow-md"
+                    : "bg-transparent text-white/70 border-white/40 hover:border-white/70 hover:bg-white/10"
               }`}
             >
               {idx + 1}
@@ -144,57 +152,69 @@ export function ExamModal({
         })}
       </div>
 
-      {/* ── Question card ────────────────────────────────────── */}
-      <div className="flex-1 px-4 pb-6 overflow-y-auto">
-        <div className="bg-white rounded-2xl p-6 shadow-xl">
-          {/* Question number + text */}
-          <div className="mb-6">
-            <span className="text-lg font-bold text-gray-900">
-              {question.id}.
+      {/* ── Question card wrapper (Centered on Desktop) ──────── */}
+      <div className="flex-1 w-full max-w-3xl mx-auto px-4 md:px-6 pb-8 flex flex-col justify-between">
+        <div className="bg-white rounded-2xl md:rounded-3xl p-6 md:p-8 shadow-2xl border border-white/20 transition-all">
+          {/* Card Header info */}
+          <div className="flex items-center justify-between border-b border-gray-100 pb-4 mb-6">
+            <span className="inline-flex items-center gap-1.5 px-3.5 py-1 rounded-full text-xs md:text-sm font-bold bg-blue-50 text-blue-600 border border-blue-100">
+              Question {currentQuestion + 1} of {EXAM_QUESTIONS.length}
             </span>
-            <p className="text-base font-semibold text-gray-800 mt-1 leading-relaxed">
+            <span className={`text-xs md:text-sm font-semibold flex items-center gap-1 ${
+              selectedAnswers[currentQuestion] !== undefined ? "text-emerald-600" : "text-gray-400"
+            }`}>
+              {selectedAnswers[currentQuestion] !== undefined ? (
+                <>
+                  <FiCheck className="w-4 h-4" />
+                  Answered
+                </>
+              ) : (
+                "Not answered yet"
+              )}
+            </span>
+          </div>
+
+          {/* Question text */}
+          <div className="mb-6 md:mb-8">
+            <p className="text-base md:text-xl font-extrabold text-gray-900 leading-relaxed">
+              <span className="text-blue-600 mr-2">{question.id}.</span>
               {question.text}
             </p>
           </div>
 
-          {/* Options */}
-          <div className="space-y-3">
+          {/* Enhanced Options */}
+          <div className="space-y-3.5 md:space-y-4">
             {question.options.map((option, optIdx) => {
               const isSelected = selectedAnswers[currentQuestion] === optIdx;
+              const letter = OPTION_LETTERS[optIdx] || `${optIdx + 1}`;
               return (
                 <button
                   key={optIdx}
                   onClick={() => handleSelectAnswer(optIdx)}
-                  className={`w-full flex items-center gap-3 px-4 py-3.5 rounded-xl border-2 text-left transition-all cursor-pointer ${
+                  className={`group w-full flex items-center gap-3.5 md:gap-4 px-4 md:px-5 py-3.5 md:py-4 rounded-xl md:rounded-2xl border-2 text-left transition-all duration-200 cursor-pointer ${
                     isSelected
-                      ? "bg-blue-500 border-blue-500 text-white shadow-md"
-                      : "bg-white border-gray-200 text-gray-700 hover:border-blue-300 hover:bg-blue-50/50"
+                      ? "bg-gradient-to-r from-blue-600 to-indigo-600 border-blue-600 text-white shadow-lg shadow-blue-500/25 scale-[1.01]"
+                      : "bg-white border-gray-200 text-gray-700 hover:border-blue-400 hover:bg-blue-50/40 hover:shadow-md hover:-translate-y-0.5"
                   }`}
                 >
-                  {/* Checkbox */}
+                  {/* Option Badge (A, B, C, D or checkmark) */}
                   <div
-                    className={`w-5 h-5 rounded flex items-center justify-center shrink-0 border-2 transition-colors ${
+                    className={`w-7 h-7 md:w-8 md:h-8 rounded-lg flex items-center justify-center shrink-0 border-2 font-bold text-xs md:text-sm transition-all ${
                       isSelected
-                        ? "bg-white border-white"
-                        : "border-gray-300 bg-white"
+                        ? "bg-white border-white text-blue-600 shadow scale-110"
+                        : "border-gray-300 bg-gray-50 text-gray-500 group-hover:border-blue-500 group-hover:bg-blue-100 group-hover:text-blue-600"
                     }`}
                   >
-                    {isSelected && (
-                      <svg
-                        className="w-3 h-3 text-blue-500"
-                        fill="currentColor"
-                        viewBox="0 0 20 20"
-                      >
-                        <path
-                          fillRule="evenodd"
-                          d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                          clipRule="evenodd"
-                        />
-                      </svg>
+                    {isSelected ? (
+                      <FiCheck className="w-4 h-4 md:w-5 md:h-5 stroke-[3]" />
+                    ) : (
+                      letter
                     )}
                   </div>
 
-                  <span className="text-sm font-medium">{option}</span>
+                  <span className="text-sm md:text-base font-semibold flex-1 leading-snug">
+                    {option}
+                  </span>
                 </button>
               );
             })}
@@ -202,13 +222,13 @@ export function ExamModal({
         </div>
 
         {/* ── Navigation buttons ──────────────────────────────── */}
-        <div className="flex items-center justify-between mt-6 gap-3">
+        <div className="flex items-center justify-between mt-6 md:mt-8 gap-3 md:gap-4">
           <button
             onClick={() =>
               setCurrentQuestion((prev) => Math.max(0, prev - 1))
             }
             disabled={currentQuestion === 0}
-            className="flex-1 py-3 rounded-xl text-sm font-bold text-white border-2 border-white/30 hover:bg-white/10 transition-colors cursor-pointer disabled:opacity-30 disabled:cursor-not-allowed"
+            className="px-6 md:px-8 py-3.5 md:py-4 rounded-xl md:rounded-2xl text-sm md:text-base font-bold text-white border-2 border-white/30 hover:bg-white/10 transition-all cursor-pointer disabled:opacity-30 disabled:cursor-not-allowed"
           >
             Previous
           </button>
@@ -220,16 +240,18 @@ export function ExamModal({
                   Math.min(EXAM_QUESTIONS.length - 1, prev + 1)
                 )
               }
-              className="flex-1 py-3 rounded-xl text-sm font-bold text-blue-600 bg-white hover:bg-blue-50 transition-colors cursor-pointer shadow-md"
+              className="flex-1 py-3.5 md:py-4 rounded-xl md:rounded-2xl text-sm md:text-base font-bold text-blue-600 bg-white hover:bg-blue-50 transition-all cursor-pointer shadow-lg shadow-black/10 flex items-center justify-center gap-2"
             >
-              Next
+              Next Question
+              <FiArrowRight className="w-4 h-4 md:w-5 md:h-5" />
             </button>
           ) : (
             <button
               onClick={onClose}
-              className="flex-1 py-3 rounded-xl text-sm font-bold text-white bg-green-500 hover:bg-green-600 transition-colors cursor-pointer shadow-md"
+              className="flex-1 py-3.5 md:py-4 rounded-xl md:rounded-2xl text-sm md:text-base font-bold text-white bg-emerald-500 hover:bg-emerald-600 transition-all cursor-pointer shadow-lg shadow-emerald-600/30 flex items-center justify-center gap-2"
             >
-              Submit
+              Submit Exam
+              <FiCheck className="w-5 h-5" />
             </button>
           )}
         </div>
