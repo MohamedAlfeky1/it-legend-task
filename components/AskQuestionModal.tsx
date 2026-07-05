@@ -13,11 +13,13 @@ export function AskQuestionModal({
 }) {
   const [questionText, setQuestionText] = useState("");
 
-  /* Restore draft from sessionStorage on mount */
+  /* Restore draft from sessionStorage whenever modal opens */
   useEffect(() => {
-    const saved = sessionStorage.getItem(QUESTION_DRAFT_KEY);
-    if (saved) setQuestionText(saved);
-  }, []);
+    if (isOpen) {
+      const saved = sessionStorage.getItem(QUESTION_DRAFT_KEY);
+      setQuestionText(saved || "");
+    }
+  }, [isOpen]);
 
   /* Persist every keystroke to sessionStorage */
   const handleChange = (value: string) => {

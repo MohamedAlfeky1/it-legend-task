@@ -21,6 +21,8 @@ export default function CourseDetailsPage() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isLeaderboardOpen, setIsLeaderboardOpen] = useState(false);
   const [isExamOpen, setIsExamOpen] = useState(false);
+  const [isTheaterMode, setIsTheaterMode] = useState(false);
+  const [isPlaying, setIsPlaying] = useState(false);
 
   return (
     <div className="min-h-screen bg-gray-50 pb-12">
@@ -35,12 +37,39 @@ export default function CourseDetailsPage() {
           </h1>
         </div>
 
+        {/* Theater Mode Video Player (Desktop Only, spans 3 columns) */}
+        {isTheaterMode && (
+          <div className="hidden lg:block lg:col-span-3 w-full mb-2">
+            <VideoPlayer
+              isPlaying={isPlaying}
+              setIsPlaying={setIsPlaying}
+              isTheaterMode={isTheaterMode}
+              onToggleTheater={() => setIsTheaterMode(false)}
+            />
+          </div>
+        )}
+
         {/* Left Column on Desktop (spans 2 cols), normal sequence on mobile */}
         <div className="lg:col-span-2 flex flex-col gap-6 w-full">
           {/* 3. Video Player (Sticky on mobile, relative on desktop) */}
-          <div className="sticky top-0 z-30 lg:relative bg-gray-50 py-2 -mx-4 px-4 lg:mx-0 lg:px-0 lg:py-0 shadow-sm lg:shadow-none border-b lg:border-none border-gray-100">
-            <VideoPlayer />
-          </div>
+          {!isTheaterMode ? (
+            <div className="sticky top-0 z-30 lg:relative bg-gray-50 py-2 -mx-4 px-4 lg:mx-0 lg:px-0 lg:py-0 shadow-sm lg:shadow-none border-b lg:border-none border-gray-100">
+              <VideoPlayer
+                isPlaying={isPlaying}
+                setIsPlaying={setIsPlaying}
+                isTheaterMode={isTheaterMode}
+                onToggleTheater={() => setIsTheaterMode(true)}
+              />
+            </div>
+          ) : (
+            <div className="block lg:hidden sticky top-0 z-30 bg-gray-50 py-2 -mx-4 px-4 shadow-sm border-b border-gray-100">
+              <VideoPlayer
+                isPlaying={isPlaying && !isTheaterMode}
+                setIsPlaying={setIsPlaying}
+                isTheaterMode={false}
+              />
+            </div>
+          )}
 
           {/* 4. Scroll Shortlinks */}
           <ShortcutLinks
