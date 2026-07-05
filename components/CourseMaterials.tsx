@@ -32,7 +32,7 @@ export function CourseMaterials() {
 
   return (
     <section className="mt-8">
-      <h2 className="text-[20px] font-bold text-gray-900 mb-4">
+      <h2 className="text-[20px] font-semibold text-gray-900 mb-4">
         Course Materials
       </h2>
 

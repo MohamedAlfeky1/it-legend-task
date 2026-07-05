@@ -55,7 +55,7 @@ export function LeaderboardModal({
             <p className="text-gray-500 text-xs md:text-sm">
               Starting SEO as your Home
             </p>
-            <h2 className="text-[#1a1a4e] font-bold text-lg md:text-xl">
+            <h2 className="text-[#1a1a4e] font-semibold text-lg md:text-xl">
               Leaderboard
             </h2>
           </div>
@@ -108,7 +108,7 @@ export function LeaderboardModal({
                     {rank <= 3 ? (
                       <span className="text-xl md:text-2xl">{getRankDisplay(rank)}</span>
                     ) : (
-                      <span className="text-sm md:text-base font-bold text-gray-400">
+                      <span className="text-sm md:text-base font-semibold text-gray-400">
                         #{rank}
                       </span>
                     )}
@@ -131,13 +131,13 @@ export function LeaderboardModal({
                   {/* Name & details */}
                   <div className="flex-1 min-w-0">
                     <p
-                      className={`text-sm md:text-base font-bold truncate ${
+                      className={`text-sm md:text-base font-semibold truncate ${
                         isCurrentUser ? "text-blue-900" : "text-gray-900"
                       }`}
                     >
                       {student.name}
                       {isCurrentUser && (
-                        <span className="ml-1.5 text-[10px] md:text-xs font-bold text-blue-600 bg-blue-100 px-2 py-0.5 rounded-full">
+                         <span className="ml-1.5 text-[10px] md:text-xs font-semibold text-blue-600 bg-blue-100 px-2 py-0.5 rounded-full">
                           YOU
                         </span>
                       )}
@@ -150,7 +150,7 @@ export function LeaderboardModal({
 
                   {/* Score */}
                   <div className="text-right shrink-0">
-                    <p className="text-lg md:text-xl font-extrabold text-[#1a1a4e]">
+                    <p className="text-lg md:text-xl font-semibold text-[#1a1a4e]">
                       {student.score}
                     </p>
                     <p className="text-[10px] md:text-xs text-gray-400 -mt-0.5">pts</p>

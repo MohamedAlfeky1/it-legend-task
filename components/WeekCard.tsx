@@ -12,8 +12,8 @@ export function WeekCard({
     <div className="border border-gray-200 rounded-xl overflow-hidden bg-white">
       {/* Header */}
       <div className="px-5 pt-4 pb-3">
-        <h4 className="text-base font-bold text-gray-900">{week.title}</h4>
-        <p className="text-xs text-gray-500 leading-relaxed mt-0.5 italic">
+        <h4 className="text-base font-semibold text-gray-900">{week.title}</h4>
+        <p className="text-sm text-gray-500 leading-relaxed mt-0.5 ">
           {week.description}
         </p>
       </div>
@@ -61,7 +61,7 @@ export function WeekCard({
                       {lesson.tags.map((tag, ti) => (
                         <span
                           key={ti}
-                          className={`text-[10px] font-bold ${tag.color}`}
+                          className={`text-[10px] font-semibold ${tag.color}`}
                         >
                           {tag.label}
                         </span>
@@ -71,11 +71,11 @@ export function WeekCard({
                 </div>
               </div>
               {hasPdf ? (
-                <span className="text-[10px] font-bold bg-emerald-100 text-emerald-700 px-2 py-0.5 rounded-full shrink-0">
+                <span className="text-[10px] font-semibold bg-emerald-100 text-emerald-700 px-2 py-0.5 rounded-xs shrink-0">
                   VIEW PDF
                 </span>
               ) : hasExam ? (
-                <span className="text-[10px] font-bold bg-blue-100 text-blue-600 px-2 py-0.5 rounded-full shrink-0">
+                <span className="text-[10px] font-semibold bg-blue-100 text-blue-600 px-2 py-0.5 rounded-xs shrink-0">
                   TAKE EXAM
                 </span>
               ) : (
@@ -88,5 +88,3 @@ export function WeekCard({
     </div>
   );
 }
-
-

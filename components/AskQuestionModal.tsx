@@ -47,7 +47,7 @@ export function AskQuestionModal({
       >
         {/* Header */}
         <div className="flex items-center justify-between px-6 py-4 border-b border-gray-100">
-          <h2 className="text-xl font-bold text-gray-900">Ask a Question</h2>
+          <h2 className="text-xl font-semibold text-gray-900">Ask a Question</h2>
           <button
             onClick={onClose}
             className="w-8 h-8 rounded-full flex items-center justify-center text-gray-400 hover:bg-gray-100 hover:text-gray-600 transition-colors cursor-pointer"
@@ -63,7 +63,7 @@ export function AskQuestionModal({
               <div className="w-10 h-10 rounded-full bg-gray-200 shrink-0 overflow-hidden">
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img
-                  src={`https://i.pravatar.cc/80?u=q-${c.name}-${i}`}
+                  src="https://cdn-icons-png.flaticon.com/512/149/149071.png"
                   alt={c.name}
                   className="w-full h-full object-cover"
                 />
@@ -90,7 +90,7 @@ export function AskQuestionModal({
           />
           <button
             onClick={handleSubmit}
-            className="mt-3 px-6 py-2.5 bg-rose-500 hover:bg-rose-600 text-white text-sm font-semibold rounded-full flex items-center gap-2 transition-colors cursor-pointer"
+            className="mt-3 px-6 py-3 bg-[#3cb49b] hover:bg-[#339b85] text-white text-sm font-semibold rounded-[5px] flex items-center gap-2 transition-colors cursor-pointer shadow-sm"
           >
             Submit Question
             <ArrowRightIcon />

@@ -7,7 +7,7 @@ export function CommentCard({ comment }: { comment: Comment }) {
       <div className="w-10 h-10 rounded-full bg-gray-200 shrink-0 overflow-hidden">
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
-          src={`https://i.pravatar.cc/80?u=${comment.name}${comment.date}`}
+          src="https://cdn-icons-png.flaticon.com/512/149/149071.png"
           alt={comment.name}
           className="w-full h-full object-cover"
         />

@@ -14,7 +14,7 @@ export function ProgressBar() {
           observer.disconnect();
         }
       },
-      { threshold: 0.1 }
+      { threshold: 0.1 },
     );
 
     if (containerRef.current) {
@@ -28,7 +28,7 @@ export function ProgressBar() {
 
   return (
     <div ref={containerRef} className="mb-6">
-      <h3 className="text-2xl font-bold text-gray-900 mb-6">
+      <h3 className="text-2xl font-semibold text-gray-900 mb-6">
         Topics for This Course
       </h3>
 
@@ -45,7 +45,7 @@ export function ProgressBar() {
         </div>
 
         {/* Track */}
-        <div className="h-3 bg-gray-200 rounded-full overflow-hidden">
+        <div className="h-1.5 bg-gray-200 rounded-full overflow-hidden">
           <div
             className="h-full rounded-full bg-green-500 transition-all duration-1000 ease-out"
             style={{ width: `${currentProgress}%` }}

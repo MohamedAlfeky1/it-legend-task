@@ -1,9 +1,9 @@
 import type { Metadata } from "next";
-import { League_Spartan } from "next/font/google";
+import { Manrope } from "next/font/google";
 import "./globals.css";
 
-const leagueSpartan = League_Spartan({
-  variable: "--font-league-spartan",
+const manrope = Manrope({
+  variable: "--font-manrope",
   subsets: ["latin"],
 });
 
@@ -20,7 +20,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${leagueSpartan.variable} h-full antialiased`}
+      className={`${manrope.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col font-sans">{children}</body>
     </html>

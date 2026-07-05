@@ -5,7 +5,7 @@ import { ArrowRightIcon } from "@/components/common/Icons";
 export function CommentsSection() {
   return (
     <section id="comments-section" className="mt-10 scroll-mt-8">
-      <h2 className="text-xl font-bold text-gray-900 mb-5">Comments</h2>
+      <h2 className="text-xl font-semibold text-gray-900 mb-5">Comments</h2>
 
       <div className="space-y-6">
         {COMMENTS.map((c, i) => (
@@ -22,7 +22,7 @@ export function CommentsSection() {
         />
       </div>
 
-      <button className="mt-4 px-6 py-2.5 bg-rose-500 hover:bg-rose-600 text-white text-sm font-semibold rounded-full flex items-center gap-2 transition-colors cursor-pointer">
+      <button className="mt-4 px-6 py-3 bg-[#3cb49b] hover:bg-[#339b85] text-white text-sm font-semibold rounded-[5px] flex items-center gap-2 transition-colors cursor-pointer shadow-sm">
         Submit Review
         <ArrowRightIcon />
       </button>

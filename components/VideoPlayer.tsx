@@ -1,9 +1,30 @@
+"use client";
+
+import { useState } from "react";
 import Image from "next/image";
 import { PlayIcon } from "@/components/common/Icons";
 
 export function VideoPlayer() {
+  const [isPlaying, setIsPlaying] = useState(false);
+
+  if (isPlaying) {
+    return (
+      <div className="relative w-full aspect-video rounded-lg overflow-hidden bg-black shadow-md">
+        <video
+          src="/videos/react-pro-image.mp4"
+          controls
+          autoPlay
+          className="w-full h-full object-contain"
+        />
+      </div>
+    );
+  }
+
   return (
-    <div className="relative w-full aspect-video rounded-lg overflow-hidden group cursor-pointer shadow-md">
+    <div
+      onClick={() => setIsPlaying(true)}
+      className="relative w-full aspect-video rounded-lg overflow-hidden group cursor-pointer shadow-md"
+    >
       {/* Thumbnail placeholder – dark overlay on a gradient background */}
       <div className="absolute inset-0 bg-gradient-to-br from-slate-800 via-slate-700 to-slate-900">
         <Image

@@ -114,7 +114,7 @@ export function ExamModal({
         </button>
 
         {/* Timer pill */}
-        <div className="flex items-center gap-2.5 bg-yellow-400 text-gray-900 px-5 md:px-6 py-2 rounded-full font-extrabold text-sm md:text-base shadow-lg shadow-yellow-500/20 animate-pulse-subtle">
+        <div className="flex items-center gap-2.5 bg-yellow-400 text-gray-900 px-5 md:px-6 py-2 rounded-full font-semibold text-sm md:text-base shadow-lg shadow-yellow-500/20 animate-pulse-subtle">
           <FiClock className="w-4 h-4 md:w-5 md:h-5 text-gray-900" />
           <span className="tabular-nums">
             {minutes}:{seconds}
@@ -122,7 +122,7 @@ export function ExamModal({
         </div>
 
         {/* Progress Counter badge */}
-        <div className="hidden sm:flex items-center gap-1.5 bg-white/10 text-white px-4 py-2 rounded-full text-xs md:text-sm font-bold border border-white/20">
+        <div className="hidden sm:flex items-center gap-1.5 bg-white/10 text-white px-4 py-2 rounded-full text-xs md:text-sm font-semibold border border-white/20">
           <span>{answeredCount}/{EXAM_QUESTIONS.length}</span>
           <span className="text-white/70">Answered</span>
         </div>
@@ -138,7 +138,7 @@ export function ExamModal({
             <button
               key={idx}
               onClick={() => setCurrentQuestion(idx)}
-              className={`w-10 h-10 md:w-12 md:h-12 rounded-full flex items-center justify-center text-sm md:text-base font-bold border-2 transition-all cursor-pointer ${
+              className={`w-10 h-10 md:w-12 md:h-12 rounded-full flex items-center justify-center text-sm md:text-base font-semibold border-2 transition-all cursor-pointer ${
                 isActive
                   ? "bg-white text-blue-600 border-white shadow-xl scale-110 ring-4 ring-white/30"
                   : isAnswered
@@ -157,7 +157,7 @@ export function ExamModal({
         <div className="bg-white rounded-2xl md:rounded-3xl p-6 md:p-8 shadow-2xl border border-white/20 transition-all">
           {/* Card Header info */}
           <div className="flex items-center justify-between border-b border-gray-100 pb-4 mb-6">
-            <span className="inline-flex items-center gap-1.5 px-3.5 py-1 rounded-full text-xs md:text-sm font-bold bg-blue-50 text-blue-600 border border-blue-100">
+            <span className="inline-flex items-center gap-1.5 px-3.5 py-1 rounded-full text-xs md:text-sm font-semibold bg-blue-50 text-blue-600 border border-blue-100">
               Question {currentQuestion + 1} of {EXAM_QUESTIONS.length}
             </span>
             <span className={`text-xs md:text-sm font-semibold flex items-center gap-1 ${
@@ -176,7 +176,7 @@ export function ExamModal({
 
           {/* Question text */}
           <div className="mb-6 md:mb-8">
-            <p className="text-base md:text-xl font-extrabold text-gray-900 leading-relaxed">
+            <p className="text-base md:text-xl font-semibold text-gray-900 leading-relaxed">
               <span className="text-blue-600 mr-2">{question.id}.</span>
               {question.text}
             </p>
@@ -199,7 +199,7 @@ export function ExamModal({
                 >
                   {/* Option Badge (A, B, C, D or checkmark) */}
                   <div
-                    className={`w-7 h-7 md:w-8 md:h-8 rounded-lg flex items-center justify-center shrink-0 border-2 font-bold text-xs md:text-sm transition-all ${
+                    className={`w-7 h-7 md:w-8 md:h-8 rounded-lg flex items-center justify-center shrink-0 border-2 font-semibold text-xs md:text-sm transition-all ${
                       isSelected
                         ? "bg-white border-white text-blue-600 shadow scale-110"
                         : "border-gray-300 bg-gray-50 text-gray-500 group-hover:border-blue-500 group-hover:bg-blue-100 group-hover:text-blue-600"
@@ -228,7 +228,7 @@ export function ExamModal({
               setCurrentQuestion((prev) => Math.max(0, prev - 1))
             }
             disabled={currentQuestion === 0}
-            className="px-6 md:px-8 py-3.5 md:py-4 rounded-xl md:rounded-2xl text-sm md:text-base font-bold text-white border-2 border-white/30 hover:bg-white/10 transition-all cursor-pointer disabled:opacity-30 disabled:cursor-not-allowed"
+            className="px-6 md:px-8 py-3.5 md:py-4 rounded-xl md:rounded-2xl text-sm md:text-base font-semibold text-white border-2 border-white/30 hover:bg-white/10 transition-all cursor-pointer disabled:opacity-30 disabled:cursor-not-allowed"
           >
             Previous
           </button>
@@ -240,7 +240,7 @@ export function ExamModal({
                   Math.min(EXAM_QUESTIONS.length - 1, prev + 1)
                 )
               }
-              className="flex-1 py-3.5 md:py-4 rounded-xl md:rounded-2xl text-sm md:text-base font-bold text-blue-600 bg-white hover:bg-blue-50 transition-all cursor-pointer shadow-lg shadow-black/10 flex items-center justify-center gap-2"
+              className="flex-1 py-3.5 md:py-4 rounded-xl md:rounded-2xl text-sm md:text-base font-semibold text-blue-600 bg-white hover:bg-blue-50 transition-all cursor-pointer shadow-lg shadow-black/10 flex items-center justify-center gap-2"
             >
               Next Question
               <FiArrowRight className="w-4 h-4 md:w-5 md:h-5" />
@@ -248,7 +248,7 @@ export function ExamModal({
           ) : (
             <button
               onClick={onClose}
-              className="flex-1 py-3.5 md:py-4 rounded-xl md:rounded-2xl text-sm md:text-base font-bold text-white bg-emerald-500 hover:bg-emerald-600 transition-all cursor-pointer shadow-lg shadow-emerald-600/30 flex items-center justify-center gap-2"
+              className="flex-1 py-3.5 md:py-4 rounded-xl md:rounded-2xl text-sm md:text-base font-semibold text-white bg-emerald-500 hover:bg-emerald-600 transition-all cursor-pointer shadow-lg shadow-emerald-600/30 flex items-center justify-center gap-2"
             >
               Submit Exam
               <FiCheck className="w-5 h-5" />

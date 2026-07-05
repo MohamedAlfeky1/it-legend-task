@@ -25,13 +25,12 @@ export default function CourseDetailsPage() {
   return (
     <div className="min-h-screen bg-gray-50 pb-12">
       <div className="w-full max-w-7xl mx-auto px-4 lg:px-8 py-6 flex flex-col lg:grid lg:grid-cols-3 gap-6 lg:gap-8 lg:items-start">
-        
         {/* 1. Path & Course Title - spans full width on desktop */}
         <div className="lg:col-span-3 flex flex-col gap-2">
           <div>
             <Breadcrumb />
           </div>
-          <h1 className="text-2xl lg:text-3xl font-bold text-gray-900 leading-tight">
+          <h1 className="text-2xl lg:text-3xl font-semibold text-gray-900 leading-tight">
             Starting SEO as your Home
           </h1>
         </div>
@@ -65,7 +64,9 @@ export default function CourseDetailsPage() {
 
           {/* 7. Course Intro and Curriculum */}
           <div id="curriculum-section" className="space-y-4 scroll-mt-24">
-            <h3 className="text-xl font-bold text-gray-900">Course Curriculum</h3>
+            <h3 className="text-xl font-semibold text-gray-900">
+              Course Curriculum
+            </h3>
             {WEEKS.map((week, i) => (
               <WeekCard
                 key={i}
@@ -80,7 +81,6 @@ export default function CourseDetailsPage() {
         <div className="block lg:hidden w-full">
           <CommentsSection />
         </div>
-
       </div>
 
       {/* Ask a Question Modal */}
