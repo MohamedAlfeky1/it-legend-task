@@ -1,3 +1,5 @@
+"use client";
+
 import { useRef, useState } from "react";
 import { FiAward } from "react-icons/fi";
 import {
@@ -25,6 +27,13 @@ export function ShortcutLinks({
     if (el) {
       el.scrollIntoView({ behavior: "smooth", block: "start" });
     }
+  };
+
+  const handleCommentsScroll = () => {
+    const targetId = window.matchMedia("(min-width: 1024px)").matches
+      ? "comments-section-desktop"
+      : "comments-section-mobile";
+    handleSmoothScroll(targetId);
   };
 
   const onMouseDown = (e: React.MouseEvent) => {
@@ -77,7 +86,7 @@ export function ShortcutLinks({
 
       {/* Comments */}
       <button
-        onClick={() => handleSmoothScroll("comments-section")}
+        onClick={handleCommentsScroll}
         className="flex items-center gap-2 px-4 py-2 rounded-full border border-gray-200 bg-white text-sm text-gray-600 font-medium hover:border-emerald-400 hover:text-emerald-600 transition-colors cursor-pointer shrink-0 pointer-events-auto"
       >
         <CommentsIcon />
@@ -108,4 +117,3 @@ export function ShortcutLinks({
     </div>
   );
 }
-

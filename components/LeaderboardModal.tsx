@@ -8,6 +8,7 @@ import {
   getRankDisplay,
   getMessageStyle,
 } from "@/lib/leaderboard-utils";
+import { AvatarInitials } from "@/components/common/AvatarInitials";
 
 export function LeaderboardModal({
   isOpen,
@@ -114,19 +115,12 @@ export function LeaderboardModal({
                     )}
                   </div>
 
-                  {/* Avatar */}
-                  <div
-                    className={`w-11 h-11 md:w-12 md:h-12 rounded-full shrink-0 overflow-hidden border-2 ${
+                  <AvatarInitials
+                    name={student.name}
+                    className={`w-11 h-11 md:w-12 md:h-12 border-2 ${
                       isCurrentUser ? "border-blue-400" : "border-gray-200"
                     }`}
-                  >
-                    {/* eslint-disable-next-line @next/next/no-img-element */}
-                    <img
-                      src={`https://i.pravatar.cc/80?u=lb-${student.name}`}
-                      alt={student.name}
-                      className="w-full h-full object-cover"
-                    />
-                  </div>
+                  />
 
                   {/* Name & details */}
                   <div className="flex-1 min-w-0">

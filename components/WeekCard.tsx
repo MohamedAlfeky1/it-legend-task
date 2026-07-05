@@ -1,3 +1,5 @@
+"use client";
+
 import type { Week } from "@/types";
 import { FileIcon, LockIcon } from "@/components/common/Icons";
 

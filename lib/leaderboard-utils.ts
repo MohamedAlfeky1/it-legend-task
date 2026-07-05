@@ -21,22 +21,6 @@ export function getRankDisplay(rank: number): string {
   return `#${rank}`;
 }
 
-/** Returns a color class based on the score */
-export function getScoreColor(score: number): string {
-  if (score >= 90) return "text-emerald-600";
-  if (score >= 70) return "text-blue-600";
-  if (score >= 40) return "text-amber-600";
-  return "text-rose-600";
-}
-
-/** Returns a background color class for the score bar */
-export function getScoreBarColor(score: number): string {
-  if (score >= 90) return "bg-emerald-500";
-  if (score >= 70) return "bg-blue-500";
-  if (score >= 40) return "bg-amber-500";
-  return "bg-rose-500";
-}
-
 /** Returns a tone-based color configuration for the message card */
 export function getMessageStyle(tone: MotivationalMessage["tone"]): {
   border: string;

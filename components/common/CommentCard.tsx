@@ -1,18 +1,10 @@
 import type { Comment } from "@/types";
+import { AvatarInitials } from "@/components/common/AvatarInitials";
 
 export function CommentCard({ comment }: { comment: Comment }) {
   return (
     <div className="flex gap-3">
-      {/* Avatar */}
-      <div className="w-10 h-10 rounded-full bg-gray-200 shrink-0 overflow-hidden">
-        {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img
-          src="https://cdn-icons-png.flaticon.com/512/149/149071.png"
-          alt={comment.name}
-          className="w-full h-full object-cover"
-        />
-      </div>
-
+      <AvatarInitials name={comment.name} className="w-10 h-10" />
       <div>
         <p className="text-sm font-semibold text-gray-900">{comment.name}</p>
         <p className="text-xs text-gray-400 mb-1">{comment.date}</p>

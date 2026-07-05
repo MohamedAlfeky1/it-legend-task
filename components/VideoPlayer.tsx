@@ -1,6 +1,5 @@
 "use client";
 
-import { useState } from "react";
 import Image from "next/image";
 import { PlayIcon } from "@/components/common/Icons";
 import { BsLayoutSidebarReverse, BsTv } from "react-icons/bs";
@@ -37,6 +36,8 @@ export function VideoPlayer({
               src="/images/thumbnail.png"
               alt="Course video thumbnail"
               fill
+              sizes="(max-width: 1024px) 100vw, 66vw"
+              preload
               className="w-full h-full object-cover opacity-80 group-hover:opacity-70 transition-opacity"
             />
           </div>

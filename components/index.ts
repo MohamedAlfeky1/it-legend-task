@@ -1,4 +1,5 @@
 /* ── Common ──────────────────────────────────────────────────── */
+export { AvatarInitials } from "./common/AvatarInitials";
 export { CommentCard } from "./common/CommentCard";
 export * from "./common/Icons";
 

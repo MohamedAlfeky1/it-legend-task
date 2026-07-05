@@ -2,9 +2,9 @@ import { COMMENTS } from "@/data";
 import { CommentCard } from "@/components/common/CommentCard";
 import { ArrowRightIcon } from "@/components/common/Icons";
 
-export function CommentsSection() {
+export function CommentsSection({ id = "comments-section" }: { id?: string }) {
   return (
-    <section id="comments-section" className="mt-10 scroll-mt-8">
+    <section id={id} className="mt-10 scroll-mt-8">
       <h2 className="text-xl font-semibold text-gray-900 mb-5">Comments</h2>
 
       <div className="space-y-6">

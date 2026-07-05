@@ -76,15 +76,6 @@ export function ExamModal({
     };
   }, [isOpen]);
 
-  // Reset state when modal opens
-  useEffect(() => {
-    if (isOpen) {
-      setCurrentQuestion(0);
-      setSelectedAnswers({});
-      setTimeLeft(572);
-    }
-  }, [isOpen]);
-
   if (!isOpen) return null;
 
   const question = EXAM_QUESTIONS[currentQuestion];
